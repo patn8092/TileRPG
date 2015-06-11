@@ -1,26 +1,31 @@
 package dev.tilerpg.main;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import dev.tilerpg.state.State;
+
 public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static int WIDTH = 320,
+	public static int WIDTH = 320,
 			HEIGHT = (WIDTH * 9) / 12;
 	
 	private static JFrame frame;
 	private BufferStrategy buffer;
 	private Graphics g;
+
+	private static State currentState;
 	
 	private Thread thread;
 	
 	public Game() {
-		
+		currentState = new MenuState();
 	}
 	
 	public synchronized void start() {
@@ -58,7 +63,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void update() {
-		
+		currentState.update();
 	}
 	
 	public void display() {
@@ -72,7 +77,9 @@ public class Game extends Canvas implements Runnable {
 		g = buffer.getDrawGraphics();
 		
 		//-
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		currentState.display(g);
 		//-
 		
 		g.dispose();
@@ -91,5 +98,9 @@ public class Game extends Canvas implements Runnable {
 		frame.setVisible(true);
 		
 		game.start();
+	}
+	
+	public static void setState(State st) {
+		currentState = st;
 	}
 }
