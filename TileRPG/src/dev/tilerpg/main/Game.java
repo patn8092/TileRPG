@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import dev.tilerpg.state.MenuState;
 import dev.tilerpg.state.State;
 
 public class Game extends Canvas implements Runnable {
@@ -23,9 +24,15 @@ public class Game extends Canvas implements Runnable {
 	private static State currentState;
 	
 	private Thread thread;
+	private KeyboardInput keyIn;
 	
 	public Game() {
-		currentState = new MenuState();
+		
+		keyIn = new KeyboardInput();
+		
+		addKeyListener(keyIn);
+		
+		currentState = new MenuState("Main Menu");
 	}
 	
 	public synchronized void start() {
@@ -46,19 +53,29 @@ public class Game extends Canvas implements Runnable {
 		double ns = 1000000000 / 60;
 		double delta = 0;
 		long now;
+		long timer = System.currentTimeMillis();
+		int updates = 0, fps = 0;
 		
 		while(true) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			
-			if(delta >= 1){
+			if(delta >= 1) {
 				update();
-				//System.out.println("Tick");
 				delta--;
+				updates++;
 			}
 			
 			display();
+			fps++;
+			
+			if(System.currentTimeMillis() - timer >= 1000) {
+				timer = System.currentTimeMillis();
+				System.out.println("Updates: "+updates+" Frames: "+fps);
+				updates = 0;
+				fps = 0;
+			}
 		}
 	}
 	
