@@ -3,6 +3,8 @@ package dev.tilerpg.state;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.sun.glass.events.KeyEvent;
+
 import dev.tilerpg.main.Game;
 
 public class MenuState extends State {
@@ -14,21 +16,16 @@ public class MenuState extends State {
 		this.title = title;
 		
 		this.menu = new Menu(new MenuItem[] {
-				new MenuItem("Play", new Function() {
-
-					@Override
-					public void exec() {
-						Game.setState(new GameState());
-					}
-				}),
-				
+				new MenuItem("Play", null),
+				new MenuItem("Settings", null),
+				new MenuItem("Exit", null)
 			}
 		);
 	}
 	
 	@Override
 	public void update() {
-		
+		menu.update();
 	}
 
 	@Override
@@ -42,13 +39,48 @@ public class MenuState extends State {
 	
 	class Menu {
 		MenuItem[] items;
+		int choice;
+		long timer = System.currentTimeMillis();
 		
 		Menu(MenuItem[] items) {
 			this.items = items;
 		}
 		
-		void display(Graphics g) {
-			
+		void update() {
+			if(System.currentTimeMillis() - timer >= 100) {
+				timer = System.currentTimeMillis();
+				
+				if(Game.getKeyInput().isKeyDown(KeyEvent.VK_W))
+					choice--;
+				if(Game.getKeyInput().isKeyDown(KeyEvent.VK_S))
+					choice++;
+				
+				if(choice < 0) choice = (items.length - 1);
+				if(choice > items.length - 1) choice = 0;
+				
+				for(int i = 0; i < items.length; i++) {
+					if(i == choice)
+						items[choice].selected = true;
+					else 
+						items[i].selected = false;
+				}
+			}
+		}
+		
+		void display(Graphics g) {	
+			for(int i = 0; i < items.length; i++) {
+				MenuItem temp = items[i];
+				
+				if(temp.selected) {
+					g.setColor(Color.BLUE);
+				} else {
+					g.setColor(Color.WHITE);
+				}
+				
+				g.drawString(temp.text,
+						Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(temp.text) / 2), 
+						(Game.HEIGHT / 3) + ((1+i) * g.getFontMetrics().getHeight()) + 3);
+			}
 		}
 	}
 	
@@ -59,6 +91,7 @@ public class MenuState extends State {
 	class MenuItem {
 		String text;
 		Function func;
+		boolean selected;
 		
 		MenuItem(String text, Function func) {
 			this.text = text;

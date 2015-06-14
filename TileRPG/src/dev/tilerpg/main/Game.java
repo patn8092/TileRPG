@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 	private static State currentState;
 	
 	private Thread thread;
-	private KeyboardInput keyIn;
+	private static KeyboardInput keyIn;
 	
 	public Game() {
 		
@@ -119,5 +119,9 @@ public class Game extends Canvas implements Runnable {
 	
 	public static void setState(State st) {
 		currentState = st;
+	}
+	
+	public static KeyboardInput getKeyInput() {
+		return keyIn;
 	}
 }
