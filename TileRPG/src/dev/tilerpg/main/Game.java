@@ -1,14 +1,13 @@
 package dev.tilerpg.main;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
 import dev.tilerpg.gfx.Screen;
-import dev.tilerpg.state.MenuState;
+import dev.tilerpg.state.MainMenuState;
 import dev.tilerpg.state.State;
 
 public class Game extends Canvas implements Runnable {
@@ -37,7 +36,7 @@ public class Game extends Canvas implements Runnable {
 		
 		addKeyListener(keyIn);
 		
-		currentState = new MenuState("Main Menu");
+		currentState = new MainMenuState();
 	}
 	
 	public synchronized void start() {
