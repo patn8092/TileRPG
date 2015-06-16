@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import dev.tilerpg.gfx.Font;
+import dev.tilerpg.gfx.Screen;
 import dev.tilerpg.main.Game;
 
 public class MenuState extends State {
@@ -28,12 +30,14 @@ public class MenuState extends State {
 	}
 
 	@Override
-	public void display(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.drawString(title, Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(title) / 2), 
-				Game.HEIGHT / 3);
+	public void display(Screen screen) {
+		Font.display(screen, title, Game.WIDTH / 2 - (title.length() * 8)/2, 0);
+		//g.setColor(Color.WHITE);
+		//g.drawString(title, 
+				//Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(title) / 2), 
+				//Game.HEIGHT / 3);
 	
-		menu.display(g);
+		menu.display(screen);
 	}
 	
 	class Menu {
@@ -70,19 +74,19 @@ public class MenuState extends State {
 			}
 		}
 		
-		void display(Graphics g) {	
+		void display(Screen screen) {	
 			for(int i = 0; i < items.length; i++) {
 				MenuItem temp = items[i];
 				
 				if(temp.selected) {
-					g.setColor(Color.BLUE);
+					//g.setColor(Color.BLUE);
 				} else {
-					g.setColor(Color.WHITE);
+					//g.setColor(Color.WHITE);
 				}
 				
-				g.drawString(temp.text,
-						Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(temp.text) / 2), 
-						(Game.HEIGHT / 3) + ((1+i) * g.getFontMetrics().getHeight()) + 3);
+				//g.drawString(temp.text,
+					//	Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(temp.text) / 2), 
+						//(Game.HEIGHT / 3) + ((1+i) * g.getFontMetrics().getHeight()) + 3);
 			}
 		}
 	}

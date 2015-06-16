@@ -1,6 +1,6 @@
 package dev.tilerpg.state;
 
-import java.awt.Graphics;
+import dev.tilerpg.gfx.Screen;
 
 public class GameState extends State {
 
@@ -10,7 +10,7 @@ public class GameState extends State {
 	}
 
 	@Override
-	public void display(Graphics g) {
+	public void display(Screen screen) {
 
 	}
 

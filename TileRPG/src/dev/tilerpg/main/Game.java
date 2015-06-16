@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import dev.tilerpg.gfx.Screen;
 import dev.tilerpg.state.MenuState;
 import dev.tilerpg.state.State;
 
@@ -15,18 +16,22 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
 	public static int WIDTH = 320,
-			HEIGHT = (WIDTH * 9) / 12;
+			HEIGHT = (WIDTH * 9) / 12,
+			SCALE = 1;
 	
 	private static JFrame frame;
 	private BufferStrategy buffer;
 	private Graphics g;
 
 	private static State currentState;
+	private Screen screen;
 	
 	private Thread thread;
 	private static KeyboardInput keyIn;
 	
 	public Game() {
+		
+		screen = new Screen(WIDTH, HEIGHT);
 		
 		keyIn = new KeyboardInput();
 		
@@ -94,10 +99,10 @@ public class Game extends Canvas implements Runnable {
 		g = buffer.getDrawGraphics();
 		
 		//-
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
-		currentState.display(g);
+		screen.clear(-16777216);
+		currentState.display(screen);
 		//-
+		g.drawImage(screen.image, 0, 0, screen.w * SCALE, screen.h * SCALE, null);
 		
 		g.dispose();
 		buffer.show();
@@ -105,7 +110,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 		frame = new JFrame("TileRPG");
-		frame.setSize(WIDTH, HEIGHT);
+		frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Game game = new Game();
