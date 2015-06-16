@@ -2,8 +2,7 @@ package dev.tilerpg.state;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import dev.tilerpg.main.Game;
 
@@ -16,9 +15,9 @@ public class MenuState extends State {
 		this.title = title;
 		
 		this.menu = new Menu(new MenuItem[] {
-				new MenuItem("Play", null),
-				new MenuItem("Settings", null),
-				new MenuItem("Exit", null)
+				new MenuItem("Play", () -> System.out.println("Play")),
+				new MenuItem("Settings", () -> System.out.println("Settings")),
+				new MenuItem("Exit", () -> System.out.println("Exit"))
 			}
 		);
 	}
@@ -31,7 +30,7 @@ public class MenuState extends State {
 	@Override
 	public void display(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.drawString(title, Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(title) /2 ), 
+		g.drawString(title, Game.WIDTH / 2 - (g.getFontMetrics().stringWidth(title) / 2), 
 				Game.HEIGHT / 3);
 	
 		menu.display(g);
@@ -64,6 +63,10 @@ public class MenuState extends State {
 					else 
 						items[i].selected = false;
 				}
+				
+				if(Game.getKeyInput().isKeyDown(KeyEvent.VK_ENTER)) {
+					items[choice].exec();
+				}
 			}
 		}
 		
@@ -85,7 +88,7 @@ public class MenuState extends State {
 	}
 	
 	interface Function {
-		void exec();
+		abstract void exec();
 	}
 	
 	class MenuItem {
