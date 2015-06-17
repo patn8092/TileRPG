@@ -30,6 +30,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public Game() {
 		
+		requestFocus();
+		
 		screen = new Screen(WIDTH, HEIGHT);
 		
 		keyIn = new KeyboardInput();
@@ -114,6 +116,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Game game = new Game();
 		
+		frame.setLocationRelativeTo(null);
 		frame.add(game);
 		frame.setResizable(false);
 		frame.setVisible(true);

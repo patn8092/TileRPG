@@ -31,6 +31,6 @@ public class MainMenuState extends State {
 	public void display(Screen screen) {
 		Font.setFont(Font.FONT1);
 		Font.display(screen, title, (Game.WIDTH / 2 - (title.length() * 8) / 2) + ~(title.length() & 1)*-1, Game.HEIGHT / 4);
-		menu.display(screen);
+		menu.display(screen, Game.WIDTH / 2, Game.HEIGHT / 3);
 	}
 }

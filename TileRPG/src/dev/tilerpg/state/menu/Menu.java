@@ -38,7 +38,7 @@ public class Menu {
 		}
 	}
 	
-	public void display(Screen screen) {	
+	public void display(Screen screen, int x, int y) {	
 		for(int i = 0; i < items.length; i++) {
 			MenuItem temp = items[i];
 			
@@ -48,8 +48,8 @@ public class Menu {
 				Font.setFont(Font.FONT1);
 			}
 			
-			Font.display(screen, temp.text, (Game.WIDTH / 2) - (temp.text.length() * 8) / 2, 
-					(Game.HEIGHT / 3) + (1+i)*24
+			Font.display(screen, temp.text, x - (temp.text.length() * 8) / 2, 
+					y + (1+i)*24
 					);
 		}
 	}

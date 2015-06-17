@@ -13,6 +13,8 @@ public class OptionState extends State {
 	public OptionState() {		
 		this.menu = new Menu(new MenuItem[] {
 				new MenuItem("Show FPS", () -> {}),
+				new MenuItem("Music", () -> {}),
+				new MenuItem("SFX", () -> {}),
 				new MenuItem("Back", () -> {Game.setState(new MainMenuState());})
 			}
 		);
@@ -27,6 +29,6 @@ public class OptionState extends State {
 	public void display(Screen screen) {
 		Font.setFont(Font.FONT1);
 		Font.display(screen, "Options go here", 0, 0);
-		menu.display(screen);
+		menu.display(screen, Game.WIDTH / 2, 24);
 	}
 }
