@@ -9,7 +9,7 @@ public class ExternalImageLoader {
 	
 	public int w, h;
 	
-	public int[] loadExternalImage(String path){
+	public Image loadExternalImage(String path){
 		try {
 			BufferedImage image = ImageIO.read(getClass().getResource(path));
 			w = image.getWidth();
@@ -18,7 +18,7 @@ public class ExternalImageLoader {
 			
 			image.getRGB(0, 0, w, h, pixels, 0, w);
 			
-			return pixels;
+			return new Image(pixels, w, h);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

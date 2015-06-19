@@ -6,6 +6,10 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+
+
+import dev.tilerpg.gfx.ExternalImageLoader;
+import dev.tilerpg.gfx.Image;
 import dev.tilerpg.gfx.Screen;
 import dev.tilerpg.state.MainMenuState;
 import dev.tilerpg.state.State;
@@ -28,6 +32,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private static KeyboardInput keyIn;
 	
+	private Image background = new ExternalImageLoader().loadExternalImage("/background.png");
+
 	public Game() {
 		
 		requestFocus();
@@ -101,6 +107,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//-
 		screen.clear(-16777216);
+		screen.display(background, 0, 0);
 		currentState.display(screen);
 		//-
 		g.drawImage(screen.image, 0, 0, screen.w * SCALE, screen.h * SCALE, null);
@@ -120,6 +127,9 @@ public class Game extends Canvas implements Runnable {
 		frame.add(game);
 		frame.setResizable(false);
 		frame.setVisible(true);
+
+		WIDTH -= (frame.getInsets().left + frame.getInsets().right);
+		HEIGHT -= (frame.getInsets().top + frame.getInsets().bottom);
 		
 		game.start();
 	}

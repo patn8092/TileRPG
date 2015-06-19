@@ -1,8 +1,9 @@
 package dev.tilerpg.gfx;
 
-public class SpriteSheet extends Image{
+public class SpriteSheet extends Image {
 	private final int CROPSIZE;
-
+	private Image image;
+	
 	public SpriteSheet(String path, int cropsize){
 		super(1, 1);
 		CROPSIZE = cropsize;
@@ -11,7 +12,8 @@ public class SpriteSheet extends Image{
 	
 	public void load(String path){
 		ExternalImageLoader loader = new ExternalImageLoader();
-		pixels = loader.loadExternalImage(path);
+		image = loader.loadExternalImage(path);
+		pixels = image.pixels;
 		w = loader.w;
 		h = loader.h;
 	}

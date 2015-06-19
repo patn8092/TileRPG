@@ -3,6 +3,7 @@ package dev.tilerpg.state.menu;
 import dev.tilerpg.gfx.Font;
 import dev.tilerpg.gfx.Screen;
 import dev.tilerpg.main.Game;
+import dev.tilerpg.main.KeyboardInput;
 
 public class Menu {
 	MenuItem[] items;
@@ -14,12 +15,12 @@ public class Menu {
 	}
 	
 	public void update() {
-		if(System.currentTimeMillis() - timer >= 100) {
+		if(System.currentTimeMillis() - timer >= 95) {
 			timer = System.currentTimeMillis();
 			
-			if(Game.getKeyInput().isKeyDown('W'))
+			if(Game.getKeyInput().isKeyDown(KeyboardInput.UP_ARROW))
 				choice--;
-			if(Game.getKeyInput().isKeyDown('S'))
+			if(Game.getKeyInput().isKeyDown(KeyboardInput.DOWN_ARROW))
 				choice++;
 			
 			if(choice < 0) choice = (items.length - 1);
@@ -32,7 +33,7 @@ public class Menu {
 					items[i].selected = false;
 			}
 			
-			if(Game.getKeyInput().isKeyDown('\n') /*'\n' is <ENTER> */) {
+			if(Game.getKeyInput().isKeyDown(' ')) {
 				items[choice].exec();
 			}
 		}

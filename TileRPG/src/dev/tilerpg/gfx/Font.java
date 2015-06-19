@@ -20,7 +20,7 @@ public class Font {
 			
 			screen.display(currentSheet.crop(c, 0), x, y);
 			
-			x += 10;
+			x += 8;
 		}
 	}
 	

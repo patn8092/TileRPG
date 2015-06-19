@@ -11,6 +11,12 @@ public class Image {
 		pixels = new int[w * h];
 	}
 	
+	public Image(int[] p, int w, int h) {
+		this.w = w;
+		this.h = h;
+		pixels = p;
+	}
+	
 	public void display(Image image, int xp, int yp){
 		int x0 = xp;
 		int x1 = xp + image.w;
