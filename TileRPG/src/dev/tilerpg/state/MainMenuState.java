@@ -1,8 +1,6 @@
 package dev.tilerpg.state;
 
-import dev.tilerpg.gfx.ExternalImageLoader;
 import dev.tilerpg.gfx.Font;
-import dev.tilerpg.gfx.Image;
 import dev.tilerpg.gfx.Screen;
 import dev.tilerpg.main.Game;
 import dev.tilerpg.state.menu.Menu;

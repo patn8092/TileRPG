@@ -18,7 +18,7 @@ public class KeyboardInput implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()] = true;
+		keys[e.getKeyCode()] = true;	
 	}
 
 	@Override
@@ -27,7 +27,8 @@ public class KeyboardInput implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) { }
+	public void keyTyped(KeyEvent e) {
+	}
 	
 	public boolean isKeyDown(int keyCode) {
 		return keys[keyCode];

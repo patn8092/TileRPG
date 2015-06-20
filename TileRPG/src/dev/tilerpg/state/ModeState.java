@@ -16,7 +16,7 @@ public class ModeState extends State {
 			new MenuItem("Load Game", () -> {}),
 			new MenuItem("Host multiplayer", () -> {}),
 			new MenuItem("Join multiplayer", () -> {}),
-			new MenuItem("Back", () -> {})
+			new MenuItem("Back", () -> {Game.setState(new MainMenuState());})
 		});
 	}
 	
