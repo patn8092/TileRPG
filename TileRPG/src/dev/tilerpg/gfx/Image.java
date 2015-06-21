@@ -48,4 +48,11 @@ public class Image {
 		for(int i = 0;i < pixels.length;i++)
 			pixels[i] = color;
 	}
+	
+	public static int getRGB(int red, int green, int blue) {
+		int rgb = red;
+		rgb = (rgb << 8) + green;
+		rgb = (rgb << 8) + blue;
+		return rgb;
+	}
 }

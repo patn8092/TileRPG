@@ -1,6 +1,7 @@
 package dev.tilerpg.entities;
 
 import dev.tilerpg.gfx.Image;
+import dev.tilerpg.gfx.Screen;
 
 public abstract class Entity {
 	
@@ -11,6 +12,10 @@ public abstract class Entity {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public abstract void update();
+	
+	public abstract void display(Screen screen);
 	
 	public int getX() {
 		return x;

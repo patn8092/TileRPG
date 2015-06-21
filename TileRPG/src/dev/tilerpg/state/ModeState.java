@@ -12,7 +12,7 @@ public class ModeState extends State {
 	public ModeState() {
 
 		this.menu = new Menu(new MenuItem[] {
-			new MenuItem("New Game", () -> {}),
+			new MenuItem("New Game", () -> {Game.setState(new GameState());}),
 			new MenuItem("Load Game", () -> {}),
 			new MenuItem("Host multiplayer", () -> {}),
 			new MenuItem("Join multiplayer", () -> {}),

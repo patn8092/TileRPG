@@ -6,8 +6,6 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import com.sun.prism.paint.Color;
-
 import dev.tilerpg.gfx.ExternalImageLoader;
 import dev.tilerpg.gfx.Image;
 import dev.tilerpg.gfx.Screen;
@@ -125,8 +123,6 @@ public class Game extends Canvas implements Runnable {
 
 		WIDTH -= (frame.getInsets().left + frame.getInsets().right);
 		HEIGHT -= (frame.getInsets().top + frame.getInsets().bottom);
-		
-		System.out.println();
 		
 		game.start();
 	}
