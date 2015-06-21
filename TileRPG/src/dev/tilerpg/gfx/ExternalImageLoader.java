@@ -5,13 +5,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import dev.tilerpg.main.Game;
+
 public class ExternalImageLoader {
 	
-	public int w, h;
+	public static int w, h;
 	
-	public Image loadExternalImage(String path){
+	public static Image load(String path){
 		try {
-			BufferedImage image = ImageIO.read(getClass().getResource(path));
+			BufferedImage image = ImageIO.read(Game.class.getResource(path));
 			w = image.getWidth();
 			h = image.getHeight();
 			int[] pixels = new int[w * h];

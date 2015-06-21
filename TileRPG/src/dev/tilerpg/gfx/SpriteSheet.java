@@ -12,7 +12,7 @@ public class SpriteSheet extends Image {
 	
 	public void load(String path){
 		ExternalImageLoader loader = new ExternalImageLoader();
-		image = loader.loadExternalImage(path);
+		image = loader.load(path);
 		pixels = image.pixels;
 		w = loader.w;
 		h = loader.h;

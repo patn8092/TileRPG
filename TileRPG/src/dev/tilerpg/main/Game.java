@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public static int WIDTH = 320,
 			HEIGHT = (WIDTH * 9) / 12,
-			SCALE = 1;
+			SCALE = 2;
 	
 	private static JFrame frame;
 	private BufferStrategy buffer;
@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private static KeyboardInput keyIn;
 	
-	private Image background = new ExternalImageLoader().loadExternalImage("/background.png");
+	private Image background = new ExternalImageLoader().load("/background.png");
 
 	public Game() {
 		requestFocus();
