@@ -1,6 +1,7 @@
 package dev.tilerpg.main;
 
 import java.awt.Canvas;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -18,7 +19,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public static int WIDTH = 320,
 			HEIGHT = (WIDTH * 9) / 12,
-			SCALE = 2;
+			SCALE = 1;
 	
 	private static JFrame frame;
 	private BufferStrategy buffer;
@@ -30,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private static KeyboardInput keyIn;
 	
-	private Image background = new ExternalImageLoader().load("/background.png");
+	private Image background = ExternalImageLoader.load("/background.png");
 
 	public Game() {
 		requestFocus();
@@ -111,18 +112,21 @@ public class Game extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 		frame = new JFrame("TileRPG");
-		frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Game game = new Game();
+		Dimension dim = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
+		game.setMinimumSize(dim);
+		game.setMaximumSize(dim);
+		game.setPreferredSize(dim);
 		
 		frame.setLocationRelativeTo(null);
 		frame.add(game);
 		frame.setResizable(false);
+		frame.pack();
 		frame.setVisible(true);
 
-		WIDTH -= (frame.getInsets().left + frame.getInsets().right);
-		HEIGHT -= (frame.getInsets().top + frame.getInsets().bottom);
+		
 		
 		game.start();
 	}

@@ -2,6 +2,7 @@ package dev.tilerpg.state;
 
 import dev.tilerpg.gfx.Font;
 import dev.tilerpg.gfx.Screen;
+import dev.tilerpg.main.Game;
 import dev.tilerpg.world.World;
 
 public class GameState extends State {
@@ -9,7 +10,7 @@ public class GameState extends State {
 	private World world;
 	
 	public GameState() {
-		world = new World(15, 15);
+		world = new World(Game.WIDTH / 16, (Game.HEIGHT / 16) + 1);
 	}
 	
 	@Override

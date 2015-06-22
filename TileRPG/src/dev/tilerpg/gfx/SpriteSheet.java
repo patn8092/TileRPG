@@ -11,11 +11,10 @@ public class SpriteSheet extends Image {
 	}
 	
 	public void load(String path){
-		ExternalImageLoader loader = new ExternalImageLoader();
-		image = loader.load(path);
+		image = ExternalImageLoader.load(path);
 		pixels = image.pixels;
-		w = loader.w;
-		h = loader.h;
+		w = image.w;
+		h = image.h;
 	}
 	
 	public Image crop(int xt, int yt){
